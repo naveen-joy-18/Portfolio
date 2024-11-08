@@ -1,0 +1,927 @@
+/* Ensure the body and HTML elements cover the full viewport height without overflow */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling only if needed */
+}
+
+/* Body with animated gradient background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,
+                                #000428,  /* Deep space blue */
+                                #004e92,  /* Galactic blue */
+                                #2a0845,  /* Cosmic purple */
+                                #6a0572,  /* Nebula purple */
+                                #ff6b6b,  /* Stellar pink */
+                                #4a00e0,  /* Deep violet */
+                                #251c76,  /* Midnight sky */
+                                #8e2de2,  /* Interstellar purple */
+                                #ff0080,  /* Space pink */
+                                #20002c,  /* Dark void */
+                                #000000   /* Black */
+                               );
+    background-size: 200% 200%; /* Make the gradient cover more area */
+    animation: gradientAnimation 30s ease infinite; /* Animate the gradient */
+}
+
+/* Keyframe animation for the gradient background */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%; /* Keep the gradient only moving horizontally */
+    }
+}
+
+
+/* Stars background */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #00000017;
+    z-index: -1; /* Place stars behind the content */
+}
+
+/* Individual star styles */
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff; /* White color for stars */
+    opacity: 0.8; /* Slightly transparent for a more realistic look */
+    animation: starMovement 40s linear infinite; /* Increased duration for slower movement */
+}
+
+/* Keyframe animation for star movement */
+@keyframes starMovement {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(calc(-50vw + 100px), calc(50vh - 100px));
+    }
+    50% {
+        transform: translate(calc(50vw - 100px), calc(-50vh + 100px));
+    }
+    75% {
+        transform: translate(calc(-50vw + 50px), calc(50vh - 50px));
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.container {
+    width: 100%; /* Adjust width for better responsiveness */
+    max-width: 1200px;
+    margin: auto;
+    text-align: justify;
+}
+
+header {
+    background-color: #343c4d6e;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 10px rgba(189, 180, 180, 0.1);
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distributes space between logo and nav */
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a:hover {
+    background-color: #4a4e69;
+    border-radius: 5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    header {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+
+    header .container {
+        flex-direction: column; /* Stack logo and nav vertically */
+    }
+
+    header .logo {
+        margin-bottom: 5px; /* Space between logo and nav items */
+    }
+
+    header nav ul {
+        flex-direction: row; /* Keep items in a row */
+        flex-wrap: wrap; /* Wrap items onto multiple lines if necessary */
+        gap: 10px; /* Space between nav items */
+    }
+}
+
+
+/* Home Section */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px; /* Added padding to sides for smaller screens */
+    background: #282c343a;
+    color: #fff;
+}
+
+/* Intro Section */
+.intro {
+    display: flex;
+    flex-direction: row; /* Default to row layout */
+    justify-content: center; /* Center items horizontally */
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 20px; /* Added gap for spacing between items */
+}
+
+/* Text Content Styling */
+.text-content {
+    flex: 1;
+    padding-right: 20px;
+    position: relative;
+    overflow: hidden; /* Ensures content doesn’t overflow */
+    max-width: 600px; /* Set max width for better text alignment */
+}
+
+/* Typing effect for heading */
+.text-content h1, .text-content h2 {
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides text that overflows */
+    animation: typing 3s steps(40, end) forwards; /* Apply typing effect */
+}
+
+/* Delayed typing effect for subtitle */
+.text-content h2 {
+    animation-delay: 3s; /* Delay for subtitle to start typing after heading */
+}
+
+.text-content h1 {
+    font-size: 2.5rem; /* Adjusted font size for better readability */
+    margin: 10px 0;
+    color: #eae7e7;
+    animation-duration: 4s; /* Adjust duration for header typing */
+}
+
+.text-content h2 {
+    font-size: 1.25rem; /* Adjusted font size for better readability */
+    color: #e0e0e0;
+    margin: 10px 0;
+    animation-duration: 3s; /* Adjust duration for subtitle typing */
+}
+
+.text-content p {
+    max-width: 100%; /* Ensure text does not overflow container */
+    margin: 10px 0;
+    color: #ddd;
+    padding-left: 0; /* Adjusted padding for better alignment */
+}
+
+/* Social Icons */
+.social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff6f61;
+}
+
+/* Button Styling */
+.text-content button {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.text-content button:hover {
+    background-color: #e5574f;
+}
+
+/* Typing Animation Keyframes */
+@keyframes typing {
+    from {
+        width: 0; /* Start with zero width */
+    }
+    to {
+        width: 100%; /* End with full width */
+    }
+}
+
+/* Profile Pic Styling */
+.profile-pic img {
+    border-radius: 50%;
+    width: 250px; /* Adjust the size as needed */
+    height: 250px; /* Adjust the size as needed */
+    object-fit: cover;
+    animation: fadeInUp 1.5s forwards; /* Optional: animate profile picture */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added box shadow for better visibility */
+}
+
+/* Optional: Fade in animation for profile picture */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .intro {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center; /* Center items horizontally */
+        text-align: center; /* Center text */
+    }
+
+    .text-content {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+        max-width: 90%; /* Make text content fit better */
+        text-align: center; /* Center text */
+    }
+
+    .profile-pic {
+        margin-top: 20px; /* Add spacing above profile picture */
+        width: 100%; /* Make profile picture responsive */
+        display: flex;
+        justify-content: center; /* Center profile picture */
+    }
+
+    .profile-pic img {
+        width: 180px; /* Adjust width for smaller screens */
+        height: 180px; /* Adjust height for smaller screens */
+    }
+}
+@media (max-width: 480px) {
+    .text-content h1 {
+        font-size: 1.5rem;
+        margin: 10px 0; /* Adjusted margin to balance spacing */
+        word-wrap: break-word; /* Ensures text wraps properly */
+        line-height: 1.2;
+    }
+    
+    
+
+    .text-content h2 {
+        font-size: .8rem; /* Adjust subtitle size for smaller screens */
+    }
+
+    .profile-pic img {
+        width: 150px; /* Further reduce size for very small screens */
+        height: 150px;
+    }
+}
+/* General Container Styling */
+.about, .services, .skills, .projects, .certifications, .contact {
+    padding: 60px 0;
+    background: linear-gradient(to right, #246eb9, #ffffff); /* Gradient background */
+    border-bottom: 3px solid #e0e0e0; /* Thicker border for separation */
+}
+
+/* Section Specific Backgrounds */
+.about {
+    background-color: #f9f9f9; /* Light grey background */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about,.services{
+        padding: 40px 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+
+.services {
+    background-color: #ffffff; /* White background */
+}
+
+.skills {
+    background-color: #f5f5f5; /* Slightly darker grey background */
+}
+
+.projects {
+    background-color: #ffffff; /* White background */
+}
+
+.certifications {
+    background-color: #f9f9f9; /* Light grey background */
+}
+
+.contact {
+    background-color: #ffffff; /* White background */
+}
+
+/* Heading Styling */
+h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    position: relative;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 5px;
+    background: #ff6f61; /* Accent color for decoration */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-radius: 5px; /* Rounded edges for decoration */
+}
+
+/* Service Container */
+.service-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px; /* Centering and width constraint */
+}
+
+.service-item {
+    background: #ffffff4c;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    flex: 1 1 300px;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.service-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 0 30px rgba(0, 102, 204, 0.8); /* Brighter blue glowing shadow */
+}
+
+/* Service Item Icon */
+.service-item i {
+    font-size: 2.8rem;
+    color: #ff6f61;
+    margin-bottom: 15px;
+}
+
+/* Skills Wrapper */
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.skill-category {
+    display: flex;
+    flex-direction: column; /* Ensure vertical alignment for content and progress */
+    align-items: flex-start; /* Align items to the start for better readability */
+    background: #f2f1ef9d;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: calc(50% - 20px); /* Adjust to have two columns with gap */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.skill-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.skill-icon {
+    font-size: 40px;
+    color: #1a73e8;
+    margin-right: 15px;
+}
+
+.skill-content h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+}
+
+.skill-content p {
+    margin: 0;
+    color: #666;
+}
+/*.skill-progress {
+    margin-top: 10px;
+    height: 8px;
+    background: #5c5a5a;
+    border-radius: 5px;
+    left: 50%;
+    overflow: hidden;
+    bottom: 4px; 
+    position: absolute;
+    transform: translateX(-50%);
+      }
+
+
+/*.skill-progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: calc(var(--percentage, 0) * 1%);
+    background: linear-gradient(to right, #ff6b6b, #fbc531);
+    border-radius: 5px;
+    transition: width 1s;
+}
+
+
+/* Skill Progress Indicator */
+.skill-progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: calc(var(--percentage, 0) * 1%); /* Width based on the percentage value */
+    background: linear-gradient(to right, #ff6b6b, #fbc531); /* Gradient color from red to yellow */
+    border-radius: 5px;
+    transition: width 1s;
+}
+
+
+/* Projects Section Styling */
+.projects-section {
+    padding: 50px 0;
+    background: #f4f9ff;
+    overflow: hidden; /* Prevents content overflow during animation */
+}
+
+/* Scrolling Container */
+.scrolling-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Hides overflow to create seamless scrolling effect */
+    position: relative;
+    width: 100%;
+}
+
+/* Projects Grid with Horizontal Scroll Animation */
+.projects-grid {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    gap: 60px; /* Space between project cards */
+    width: calc(100% * 2); /* Double the width of the container for seamless scrolling */
+    animation: scroll-left 60s linear infinite; /* Smooth infinite scroll */
+}
+
+/* Keyframes for Scrolling Animation */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0); /* Start from the right */
+    }
+    100% {
+        transform: translateX(-50%); /* Scrolls through half of the content width */
+    }
+}
+
+/* Pause scrolling animation on hover */
+.projects-grid:hover {
+    animation-play-state: paused; /* Pauses the animation */
+}
+
+/* Project Card */
+.project-card {
+    flex: 0 0 300px; /* Fixed width for each card */
+    height: 300px;
+    perspective: 1000px;
+    overflow: hidden;
+    display: inline-block; /* Keeps cards aligned horizontally */
+}
+
+/* Card Inner Flip Animation */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back of the Card */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.card-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Optional: Add padding if needed */
+}
+
+/* Link Style */
+.card-back a {
+    color: #ff6f61; /* Orange color */
+    text-decoration: none;
+    font-size: 1.2rem; /* Adjust font size as needed */
+    margin-top: 15px; /* Space above the link */
+}
+
+.card-back a:hover {
+    color: #e5574f; /* Change color on hover */
+}
+
+/* Card Front Styling */
+.card-front {
+    background: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Back Styling */
+.card-back {
+    background: #f4f9ff;
+    transform: rotateY(180deg);
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    color: #333;
+}
+
+.project-image {
+    flex-shrink: 0; /* Prevents the image container from shrinking */
+    max-height: 180px; /* Adjusted to prevent overflow */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.project-image img {
+    max-width: 100%; /* Ensures image doesn't overflow horizontally */
+    max-height: 100%; /* Prevents the image from exceeding its container */
+    object-fit: contain; /* Maintains the aspect ratio */
+    border-bottom: 3px solid #e0e0e0;
+}
+
+.project-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
+    text-align: center; /* Centers the text within the container */
+    padding: 10px;
+    flex-grow: 1;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    /* Keyframes for Scrolling Animation */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0); /* Start from the right */
+    }
+    100% {
+        transform: translateX(-90%); /* Scrolls through half of the content width */
+    }
+}
+    .projects-grid {
+        gap: 30px;
+        width: calc(100% * 3); /* Triple the width for a seamless scroll on smaller screens */
+        animation: scroll-left 40s linear infinite; /* Adjust speed for smaller screens */
+    }
+
+    .project-card {
+        flex: 0 0 300px; /* Adjust width for smaller screens */
+        height: 300px; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0); /* Start from the right */
+        }
+        100% {
+            transform: translateX(-130%); /* Scrolls through half of the content width */
+        }
+    }
+    .projects-grid {
+        gap: 20px; /* Adjust space between cards */
+        width: calc(100% * 4); /* Quadruple the width for very small screens */
+        animation: scroll-left 40s linear infinite; /* Adjust speed for very small screens */
+    }
+
+    .project-card {
+        flex: 0 0 300px; /* Adjust width for very small screens */
+        height: 300px;
+         /* Adjust height for very small screens */
+    }
+
+    .card-inner {
+        transition: transform 0.4s; /* Faster flip animation on smaller screens */
+    }
+}
+
+
+
+
+/* Certifications Section */
+.certifications {
+    padding: 60px 20px;
+    background: linear-gradient(to right, #246eb9, #ffffff);
+    text-align: center;
+}
+
+.certifications h2 {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center; 
+}
+
+/* Certification Card */
+.certification-card {
+    position: relative;
+    background: #ffffff;
+    height: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    overflow: hidden; /* Ensures that the image does not overflow the card */
+    transition: transform 0.3s, box-shadow 0.3s;
+    align-items: center; /* Center content vertically within the card */
+    justify-content: center;
+    cursor: pointer; 
+}
+
+/* Overlay Effect */
+.certification-card::after {
+    content: 'Click to View'; /* Text displayed on hover */
+    position: relative;
+    bottom: -58px;
+    background: rgba(247, 244, 244, 0.388); /* Semi-transparent background */
+    color: #de480d; /* White text color */
+    display: flex;
+    
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 1; /* Always visible */
+    transition: opacity 0.3s;
+    pointer-events: none; /* Allows clicks to pass through to the card */
+    border-radius: 8px;
+}
+
+/* Hover Effect */
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.certification-card:hover::after {
+    opacity: 0; /* Hide the overlay on hover */
+}
+
+.certification-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.certification-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Certificate Image */
+.certificate-image {
+    position: absolute;
+    bottom: -100%; /* Start off-screen */
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: bottom 0.3s;
+}
+
+/* Hover Effect for Image */
+.certification-card:hover .certificate-image {
+    bottom: 0; /* Move image into view */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .certifications h2 {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .certification-card {
+        padding: 15px;
+        height: 200px;
+    }
+
+    .certification-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+    }
+
+    .certification-card p {
+        font-size: 0.9rem;
+    }
+
+    .certificate-image {
+        bottom: -100%; /* Slightly off-screen for hover effect */
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .certification-card {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        padding: 10px;
+        height: 250px;
+        text-align: center; /* Center the text within the card */
+    }
+
+    .certification-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .certification-card p {
+        font-size: 0.8rem;
+    }
+
+    .certificate-image {
+        bottom: -100%; /* Adjust positioning for very small screens */
+    }
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px 20px;
+    background: #f4f9ff;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center; /* Center the heading text */
+}
+
+.contact p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: center; /* Center the paragraph text */
+}
+
+.contact-info {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    font-size: 1.5rem; /* Adjust font size for icons */
+}
+
+.contact-info li {
+    margin: 0 15px; /* Space between icons */
+    display: inline-flex; /* Ensure proper alignment */
+    align-items: center; /* Center icons vertically within the list item */
+}
+
+.contact-info a {
+    color: #ff6f61;
+    text-decoration: none;
+    display: flex; /* Make anchor tags flex containers */
+    align-items: center; /* Center icons vertically */
+}
+
+.contact-info a:hover {
+    color: #e5574f; /* Change color on hover */
+}
+
+.contact-info i {
+    font-size: 2rem; /* Adjust icon size as needed */
+}
+
+
+/* Footer Styling */
+footer {
+    background: #282c34;
+    color: #ffffff;
+    padding: 25px 600px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+@media (max-width: 768px) {
+    footer {
+        background: #282c34;
+        color: #ffffff;
+        padding: 25px 100px;
+        text-align: center;
+    }
+}    
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .service-container, .skills-container{
+        flex-direction: column;
+        gap: 20px; /* Adjust gap for smaller screens */
+    }
+}
